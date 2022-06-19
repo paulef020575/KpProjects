@@ -1,0 +1,8 @@
+/.vs
+/KpProjects.Classes/bin
+/KpProjects.Classes/obj
+/KpProjects.Data/bin
+/KpProjects.Data/obj
+/KpProjectsApi/*.user
+/KpProjectsApi/bin
+/KpProjectsApi/obj
