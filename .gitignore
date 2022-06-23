@@ -6,3 +6,7 @@
 /KpProjectsApi/*.user
 /KpProjectsApi/bin
 /KpProjectsApi/obj
+/KpProjects.Connector/bin
+/KpProjects.Connector/obj
+/KpProjects.WpfClient/bin
+/KpProjects.WpfClient/obj

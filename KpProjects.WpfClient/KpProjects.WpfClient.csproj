@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KpProjects.Classes\KpProjects.Classes.csproj" />
+    <ProjectReference Include="..\KpProjects.Connector\KpProjects.Connector.csproj" />
+  </ItemGroup>
+
+</Project>
