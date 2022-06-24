@@ -15,7 +15,7 @@ namespace KpProjects.Connector
         public KpProjectsApiClient(string baseAddress)
         {
             _httpClient = new HttpClient();
-            //_httpClient.BaseAddress = new Uri(baseAddress);
+            _httpClient.BaseAddress = new Uri(baseAddress);
 
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -26,21 +26,14 @@ namespace KpProjects.Connector
         {
             TDataClass[] items = new TDataClass[0];
 
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync(@"http://localhost:42216/Person");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{typeof(TDataClass).Name}");
 
-                if (response.IsSuccessStatusCode)
-                {
-                    items = await response.Content.ReadAsAsync<TDataClass[]>();
-                }
-
-                return items?.ToList();
-            }
-            catch (Exception e)
+            if (response.IsSuccessStatusCode)
             {
-                throw;
+                items = await response.Content.ReadAsAsync<TDataClass[]>();
             }
+
+            return items?.ToList();
         }
     }
 }

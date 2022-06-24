@@ -14,11 +14,5 @@ namespace KpProjects.WpfClient
         {
             InitializeComponent();
         }
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            KpProjectsApiClient client = new KpProjectsApiClient(@"https://localhost:44363/");
-            listBox.ItemsSource = await client.LoadList<Person>();
-        }
     }
 }
