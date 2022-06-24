@@ -6,3 +6,5 @@
 /KpProjectsApi/*.user
 /KpProjectsApi/bin
 /KpProjectsApi/obj
+/KpProjects.Client.Web/obj
+/KpProjects.Client.Web/bin

@@ -14,7 +14,7 @@ namespace KpProjects.Api.Controllers.Base
     public abstract class BaseController<TDataItem> : Controller
         where TDataItem : DataClass
     {
-        private KpProjectsContext _context;
+        protected KpProjectsContext _context;
 
         public BaseController(KpProjectsContext context)
         {
