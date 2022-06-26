@@ -4,8 +4,98 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KpProjects.WpfClient"
+        xmlns:viewModels="clr-namespace:KpProjects.WpfClient.ViewModels"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-    </Grid>
+        x:Name="MainAppWindow"
+        Title="{Binding Title}" 
+        Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        BorderThickness="1">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
+    <DockPanel>
+        <StackPanel Name="MainMenuPanel"
+                    DockPanel.Dock="Left"
+                    Width="{Binding MenuWidth}"
+                    Background="LightGreen"
+                    Orientation="Vertical">
+            <StackPanel Name="LogoPanel"
+                        Background="Transparent"
+                        Orientation="Horizontal">
+                <Image Source="/Resources/logo.png" 
+                       Margin="5" 
+                       Stretch="None" 
+                       HorizontalAlignment="Left"
+                       Height="42" />
+                <TextBlock Margin="10" FontSize="24"
+                    Text="КАРЕЛИЯ ПАЛП" 
+                    FontWeight="SemiBold"
+                    Foreground="DimGray"/>
+            </StackPanel>
+            <Grid Name="MenuControlBtns" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" 
+                        Style="{StaticResource ControlButtonStyle}"
+                        Command="{Binding ShowFullMenuCommand}">
+                    <iconPacks:PackIconMaterial Kind="Menu" />
+                </Button>
+                <Button Grid.Column="2" 
+                        Style="{StaticResource ControlButtonStyle}"
+                        Command="{Binding CollapseMenuCommand}">
+                    <iconPacks:PackIconMaterial Kind="Close" />
+                </Button>
+            </Grid>
+        </StackPanel>
+        <DockPanel Name="HeaderPanel"
+                   DockPanel.Dock="Top"
+                   MouseDown="HeaderPanel_OnMouseDown">
+            <Button DockPanel.Dock="Right"
+                    Margin="5 5 5 0"
+                    Style="{StaticResource CloseButtonStyle}"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=MainAppWindow}">
+                <iconPacks:PackIconMaterial Kind="Close" />
+            </Button>
+            <Button DockPanel.Dock="Right"
+                    Margin="0 5 0 0"
+                    Style="{StaticResource ControlButtonStyle}"
+                    Command="{Binding MaximizeCommand}"
+                    CommandParameter="{Binding ElementName=MainAppWindow}">
+                <iconPacks:PackIconMaterial Kind="WindowMaximize" />
+            </Button>
+            <Button DockPanel.Dock="Right"
+                    Margin="0 5 0 0"
+                    Style="{StaticResource ControlButtonStyle}"
+                    Command="{Binding RestoreCommand}"
+                    CommandParameter="{Binding ElementName=MainAppWindow}">
+                <iconPacks:PackIconMaterial Kind="WindowRestore" />
+            </Button>
+            <Button DockPanel.Dock="Right"
+                    Margin="0 5 5 5"
+                    Style="{StaticResource ControlButtonStyle}"
+                    Command="{Binding MinimizeCommand}"
+                    CommandParameter="{Binding ElementName=MainAppWindow}">
+                <iconPacks:PackIconMaterial Kind="WindowMinimize" />
+            </Button>
+
+            <TextBlock Text="{Binding Title}"
+                       TextAlignment="Center" 
+                       Padding="3"
+                       FontSize="14">
+                <TextBlock.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" 
+                                  Command="{Binding ChangeWindowStateCommand}" 
+                                  CommandParameter="{Binding ElementName=MainAppWindow}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
+        </DockPanel>
+        <ContentPresenter Content="{Binding CurrentViewModel}" />
+    </DockPanel>
 </Window>

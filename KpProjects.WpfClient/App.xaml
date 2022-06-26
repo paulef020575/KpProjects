@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:KpProjects.WpfClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ControlButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

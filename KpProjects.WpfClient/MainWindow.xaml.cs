@@ -2,6 +2,7 @@
 using KpProjects.Connector;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace KpProjects.WpfClient
 {
@@ -13,6 +14,12 @@ namespace KpProjects.WpfClient
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void HeaderPanel_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }
