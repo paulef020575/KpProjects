@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using KpProjects.WpfClient.ViewModels.Base;
@@ -63,6 +64,14 @@ namespace KpProjects.WpfClient.ViewModels
         }
 
         #endregion
+
+        #endregion
+
+        #region ctor
+
+        public MainWindowViewModel()
+        {
+        }
 
         #endregion
 
@@ -138,6 +147,18 @@ namespace KpProjects.WpfClient.ViewModels
                 }
             }
         }
+
+        #endregion
+
+        #region LoadingData
+
+        protected override async Task LoadingData() 
+        {
+        }
+
+        #endregion
+
+        #region MyRegion
 
         #endregion
 

@@ -96,6 +96,12 @@
                 </TextBlock.InputBindings>
             </TextBlock>
         </DockPanel>
+
+        <ProgressBar Minimum="0" 
+                     Maximum="100" 
+                     IsIndeterminate="{Binding CurrentViewModel.IsLoading}"
+                     DockPanel.Dock="Top" />
+        
         <ContentPresenter Content="{Binding CurrentViewModel}" />
     </DockPanel>
 </Window>

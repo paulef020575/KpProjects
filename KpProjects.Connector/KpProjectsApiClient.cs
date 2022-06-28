@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KpProjects.Connector
 {
-    public class KpProjectsApiClient
+    public class KpProjectsApiClient : IDataClient
     {
         private HttpClient _httpClient;
 

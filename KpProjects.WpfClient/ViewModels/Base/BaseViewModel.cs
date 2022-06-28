@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using KpProjects.Connector;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace KpProjects.WpfClient.ViewModels.Base
 {
@@ -8,6 +10,7 @@ namespace KpProjects.WpfClient.ViewModels.Base
     /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+
         #region Properties
 
         #region Title
@@ -67,7 +70,7 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void RaisePropertyChanged([CallerMemberName]string propertyName = null)
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -76,6 +79,19 @@ namespace KpProjects.WpfClient.ViewModels.Base
                 IsModified = true;
             }
         }
+
+        #endregion
+
+        #region RaiseLoading
+
+        public async virtual void RaiseLoading()
+        {
+            IsLoading = true;
+            await LoadingData();
+            IsLoading = false;
+        }
+
+        protected abstract Task LoadingData();
 
         #endregion
     }
