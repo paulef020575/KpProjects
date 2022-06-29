@@ -7,6 +7,11 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\PersonListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -14,6 +19,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ControlButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PersonListView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

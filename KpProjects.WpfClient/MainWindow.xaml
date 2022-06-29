@@ -52,6 +52,17 @@
                     <iconPacks:PackIconMaterial Kind="Close" />
                 </Button>
             </Grid>
+
+            <StackPanel Orientation="Vertical">
+                <RadioButton Command="{Binding OpenViewModelCommand}"
+                                 CommandParameter="PersonListViewModel">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Foreground="DarkGreen" 
+                                                        Kind="AccountSupervisor" />
+                        <TextBlock Text="Пользователи" />
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
         </StackPanel>
         <DockPanel Name="HeaderPanel"
                    DockPanel.Dock="Top"

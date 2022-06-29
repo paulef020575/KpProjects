@@ -2,9 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:KpProjects.WpfClient"
+             xmlns:viewModels="clr-namespace:KpProjects.WpfClient.ViewModels"
+             xmlns:views="clr-namespace:KpProjects.WpfClient.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModels:PersonListViewModel}">
+                <views:PersonListView />
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ControlButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />

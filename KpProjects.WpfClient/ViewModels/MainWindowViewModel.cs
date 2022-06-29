@@ -169,9 +169,10 @@ namespace KpProjects.WpfClient.ViewModels
 
         private void OpenViewModel(string viewModelName)
         {
-
+            BaseViewModel viewModel = ViewModelFactory.CreateViewModel(viewModelName);
+            CurrentViewModel = viewModel;
+            CurrentViewModel.RaiseLoading();
         }
-
 
         #endregion
 
@@ -312,6 +313,23 @@ namespace KpProjects.WpfClient.ViewModels
                     _changeWindowStateCommand = new RelayCommand(ChangeWindowState);
 
                 return _changeWindowStateCommand;
+            }
+        }
+
+        #endregion
+
+        #region OpenViewModelCommand
+
+        private RelayCommand _openViewModelCommand;
+
+        public RelayCommand OpenViewModelCommand
+        {
+            get
+            {
+                if (_openViewModelCommand == null)
+                    _openViewModelCommand = new RelayCommand(x => OpenViewModel((string)x));
+
+                return _openViewModelCommand;
             }
         }
 

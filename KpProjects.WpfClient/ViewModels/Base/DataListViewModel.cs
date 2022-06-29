@@ -27,9 +27,16 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         #region ctor
 
-        public DataListViewModel() { }
+        public DataListViewModel()
+        {
+            DataList = new ObservableCollection<TDataClass>();
+        }
 
-        public DataListViewModel(IDataClient dataClient) : base(dataClient) { }
+        public DataListViewModel(IDataClient dataClient)
+            : base(dataClient)
+        {
+            DataList = new ObservableCollection<TDataClass>();
+        }
 
         #endregion
 
@@ -41,9 +48,43 @@ namespace KpProjects.WpfClient.ViewModels.Base
         protected async override Task LoadingData()
         {
             IEnumerable<TDataClass> items = await DataClient.LoadList<TDataClass>();
+            foreach (TDataClass item in items)
+            {
+                DataList.Add(item);
+            }
         }
 
         #endregion
+
+        #region Add
+
+        protected virtual void Add()
+        {
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Commands
+
+        #region AddCommand
+
+        private RelayCommand _addCommand;
+
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                if (_addCommand == null)
+                    _addCommand = new RelayCommand("Добавить", x => Add());
+
+                return _addCommand;
+            }
+        }
+
+        #endregion
+
 
         #endregion
     }
