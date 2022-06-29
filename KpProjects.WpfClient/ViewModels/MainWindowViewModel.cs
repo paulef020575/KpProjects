@@ -12,7 +12,13 @@ namespace KpProjects.WpfClient.ViewModels
     /// </summary>
     public class MainWindowViewModel : BaseViewModel
     {
-        #region Properties
+        #region Properties & fields
+
+        #region ViewModelFactory
+
+        private ViewModelFactory ViewModelFactory { get; }
+
+        #endregion
 
         #region Title
 
@@ -71,6 +77,7 @@ namespace KpProjects.WpfClient.ViewModels
 
         public MainWindowViewModel()
         {
+            ViewModelFactory = new ViewModelFactory();
         }
 
         #endregion
@@ -158,7 +165,13 @@ namespace KpProjects.WpfClient.ViewModels
 
         #endregion
 
-        #region MyRegion
+        #region OpenViewModel
+
+        private void OpenViewModel(string viewModelName)
+        {
+
+        }
+
 
         #endregion
 

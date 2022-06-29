@@ -5,8 +5,6 @@ namespace KpProjects.WpfClient.ViewModels
 {
     public class PersonListViewModel : DataListViewModel<Person>
     {
-        public override string Title => "Тест";
-
-        public override bool IsLoading { get => true; set { } }
+        public override string Title => "Список пользователей";
     }
 }
