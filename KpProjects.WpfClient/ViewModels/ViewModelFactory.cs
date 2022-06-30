@@ -36,6 +36,7 @@ namespace KpProjects.WpfClient.ViewModels
             _dcVmDictionary = new Dictionary<string, Type>();
 
             _dcVmDictionary.Add(nameof(PersonListViewModel), typeof(PersonListViewModel));
+            _dcVmDictionary.Add(nameof(PersonViewModel), typeof(PersonViewModel));
         }
 
         private void InitializeVmDictionary()

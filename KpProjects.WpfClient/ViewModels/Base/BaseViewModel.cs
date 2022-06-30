@@ -94,5 +94,21 @@ namespace KpProjects.WpfClient.ViewModels.Base
         protected abstract Task LoadingData();
 
         #endregion
+
+        #region CreateVm delegate
+
+        public delegate BaseViewModel CreateVm(string viewModelName);
+
+        public CreateVm GetViewModel;
+
+        #endregion
+
+        #region ShowVm delegate
+
+        public delegate void ShowVm(BaseViewModel viewModel);
+
+        public ShowVm SwitchTo;
+
+        #endregion
     }
 }

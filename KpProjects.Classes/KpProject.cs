@@ -97,14 +97,14 @@ namespace KpProjects.Classes
 
         #endregion
 
-        //#region Milestones
+        #region Milestones
 
-        ///// <summary>
-        /////     Этапы проекта
-        ///// </summary>
-        //public virtual ICollection<Milestone> Milestones { get; set; }
+        /// <summary>
+        ///     Этапы проекта
+        /// </summary>
+        public virtual ICollection<Milestone> Milestones { get; set; }
 
-        //#endregion
+        #endregion
 
         #endregion
     }

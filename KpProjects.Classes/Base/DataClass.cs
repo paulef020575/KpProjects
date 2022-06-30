@@ -29,6 +29,15 @@ namespace KpProjects.Classes
 
         #endregion
 
+        #region ctor
+
+        public DataClass()
+        {
+            Id = Guid.Empty;
+        }
+
+        #endregion
+
         #region Methods
 
         #region GetDescription

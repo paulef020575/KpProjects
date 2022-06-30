@@ -165,13 +165,33 @@ namespace KpProjects.WpfClient.ViewModels
 
         #endregion
 
+        #region CreateViewModel
+
+        private BaseViewModel CreateViewModel(string viewModelName)
+        {
+            return ViewModelFactory.CreateViewModel(viewModelName);
+        }
+
+        #endregion
+
+        #region ShowViewModel
+
+        private void ShowViewModel(BaseViewModel viewModel)
+        {
+            viewModel.GetViewModel = CreateViewModel;
+            viewModel.SwitchTo = ShowViewModel;
+
+            CurrentViewModel = viewModel;
+            CurrentViewModel.RaiseLoading();
+        }
+
+        #endregion
+
         #region OpenViewModel
 
         private void OpenViewModel(string viewModelName)
         {
-            BaseViewModel viewModel = ViewModelFactory.CreateViewModel(viewModelName);
-            CurrentViewModel = viewModel;
-            CurrentViewModel.RaiseLoading();
+            ShowViewModel(CreateViewModel(viewModelName));
         }
 
         #endregion

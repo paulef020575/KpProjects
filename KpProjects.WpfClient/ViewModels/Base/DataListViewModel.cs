@@ -7,7 +7,7 @@ using KpProjects.Connector;
 namespace KpProjects.WpfClient.ViewModels.Base
 {
     public abstract class DataListViewModel<TDataClass> : DataClientViewModel
-        where TDataClass : DataClass
+        where TDataClass : DataClass, new()
     {
         #region Properties
 
@@ -17,9 +17,9 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         #endregion
 
-        #region Title
+        #region ItemViewModelName
 
-        public override string Title => throw new System.NotImplementedException();
+        protected abstract string ItemViewModelName { get; }
 
         #endregion
 
@@ -64,6 +64,22 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         #endregion
 
+        #region Edit
+
+        private void Edit(object item)
+        {
+            TDataClass dataItem = item as TDataClass;
+
+            if (dataItem != null)
+            {
+                DataItemViewModel<TDataClass> viewModel = (DataItemViewModel<TDataClass>)GetViewModel(ItemViewModelName);
+                viewModel.SetDataItem(dataItem);
+                SwitchTo(viewModel);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -85,6 +101,22 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         #endregion
 
+        #region ShowDetailsCommand
+
+        private RelayCommand _editCommand;
+
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                if (_editCommand == null)
+                    _editCommand = new RelayCommand("Просмотр", x => Edit(x));
+
+                return _editCommand;
+            }
+        }
+
+        #endregion
 
         #endregion
     }

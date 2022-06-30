@@ -1,12 +1,34 @@
 ﻿using KpProjects.Classes;
 using KpProjects.Connector;
 using KpProjects.WpfClient.ViewModels.Base;
+using System;
+using System.DirectoryServices.AccountManagement;
 
 namespace KpProjects.WpfClient.ViewModels
 {
+    /// <summary>
+    ///     Модель представления "Список пользователей"
+    /// </summary>
     public class PersonListViewModel : DataListViewModel<Person>
     {
+        #region Properties
+
+        #region Title
+
+        /// <inheritdoc />
         public override string Title => "Список пользователей";
+
+        #endregion
+
+        #region ItemViewModelName
+
+        protected override string ItemViewModelName => nameof(PersonViewModel);
+
+        #endregion
+
+        #endregion
+
+        #region ctors
 
         public PersonListViewModel()
             : base()
@@ -18,9 +40,10 @@ namespace KpProjects.WpfClient.ViewModels
 
         public PersonListViewModel(IDataClient client) : base(client) { }
 
-        protected override void Add()
-        {
-            DataList.Add(new Person {Lastname = "Петрова", Firstname = "Ирина", Secondname = "Викторовна"});
-        }
+        #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

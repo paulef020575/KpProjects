@@ -1,7 +1,6 @@
 ﻿using KpProjects.Connector;
-using KpProjects.WpfClient.ViewModels.Base;
 
-namespace KpProjects.WpfClient.ViewModels
+namespace KpProjects.WpfClient.ViewModels.Base
 {
     public abstract class DataClientViewModel : BaseViewModel
     {

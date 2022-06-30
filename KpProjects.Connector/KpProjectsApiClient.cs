@@ -21,6 +21,20 @@ namespace KpProjects.Connector
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public async Task<TDataClass> Load<TDataClass>(Guid id) 
+            where TDataClass : DataClass
+        {
+            TDataClass dataItem = null;
+            HttpResponseMessage response = await _httpClient.GetAsync($"{typeof(TDataClass).Name}/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                dataItem = await response.Content.ReadAsAsync<TDataClass>();
+            }
+
+            return dataItem;
+        }
+
         public async Task<IEnumerable<TDataClass>> LoadList<TDataClass>()
             where TDataClass : DataClass
         {
