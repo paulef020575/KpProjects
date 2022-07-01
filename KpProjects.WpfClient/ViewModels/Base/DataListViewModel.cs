@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using KpProjects.Classes;
@@ -47,10 +48,18 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         protected async override Task LoadingData()
         {
-            IEnumerable<TDataClass> items = await DataClient.LoadList<TDataClass>();
-            foreach (TDataClass item in items)
+            try
             {
-                DataList.Add(item);
+                IEnumerable<TDataClass> items = await DataClient.LoadList<TDataClass>();
+                DataList.Clear();
+                foreach (TDataClass item in items)
+                {
+                    DataList.Add(item);
+                }
+            }
+            catch (Exception e)
+            {
+                ShowErrorMessage($"Ошибка загрузки данных: {e.Message}");
             }
         }
 
@@ -60,6 +69,8 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         protected virtual void Add()
         {
+            DataItemViewModel<TDataClass> viewModel = (DataItemViewModel<TDataClass>)GetViewModel(ItemViewModelName);
+            SwitchTo(viewModel);
         }
 
         #endregion

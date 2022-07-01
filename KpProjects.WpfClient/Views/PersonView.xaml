@@ -21,11 +21,13 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Active Directory" Margin="5"/>
         <TextBox x:Name="SearchName" Margin="5" Grid.Row="0" Grid.Column="1" />
-        <Button Command="{Binding FindInAdCommand}" 
+        <Button Command="{Binding ReadFromAdCommand}" 
                 CommandParameter="{Binding ElementName=SearchName, Path=Text}"  Margin="5" Grid.Row="0" Grid.Column="2">
             <iconPacks:PackIconMaterial Kind="AccountSearch" />
         </Button>
 
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Фамилия" Margin="5" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
 
     </Grid>
 </UserControl>

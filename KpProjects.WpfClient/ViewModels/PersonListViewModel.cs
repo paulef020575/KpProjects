@@ -1,8 +1,6 @@
 ﻿using KpProjects.Classes;
 using KpProjects.Connector;
 using KpProjects.WpfClient.ViewModels.Base;
-using System;
-using System.DirectoryServices.AccountManagement;
 
 namespace KpProjects.WpfClient.ViewModels
 {

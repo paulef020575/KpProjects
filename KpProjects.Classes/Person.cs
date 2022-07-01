@@ -51,7 +51,7 @@ namespace KpProjects.Classes
         ///     Краткое имя
         /// </summary>
         [NotMapped]
-        public override string Name 
+        public override string Name
         {
             get
             {
@@ -107,6 +107,28 @@ namespace KpProjects.Classes
 
         [InverseProperty(nameof(KpTask.Executor))]
         public ICollection<KpTask> ExecutionTasks { get; set; }
+
+        #endregion
+
+        #region AdProperties
+
+        #region AdGuid
+
+        public Guid AdGuid { get; set; }
+
+        #endregion
+
+        #region Domain
+
+        public string Domain { get; set; }
+
+        #endregion
+
+        #region DomainName
+
+        public string DomainName { get; set; }
+
+        #endregion
 
         #endregion
 

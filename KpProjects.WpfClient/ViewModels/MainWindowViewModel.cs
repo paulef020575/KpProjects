@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -67,6 +69,59 @@ namespace KpProjects.WpfClient.ViewModels
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        #endregion
+
+        #region ErrorMessage
+
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                if (!string.Equals(_errorMessage, value))
+                {
+                    _errorMessage = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged(nameof(HasErrorMessage));
+                }
+            }
+        }
+
+        public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
+
+        #endregion
+
+        #region ClearErrorBw
+
+        private BackgroundWorker _clearErrorBw;
+
+        protected BackgroundWorker ClearErrorBw
+        {
+            get
+            {
+                if (_clearErrorBw == null)
+                {
+                    _clearErrorBw = new BackgroundWorker();
+                    _clearErrorBw.DoWork += _clearErrorBw_DoWork;
+                    _clearErrorBw.RunWorkerCompleted += _clearErrorBw_RunWorkerCompleted;
+                }
+
+                return _clearErrorBw;
+            }
+        }
+
+        private void _clearErrorBw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ErrorMessage = "";
+        }
+
+        private void _clearErrorBw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Thread.Sleep(5000);
         }
 
         #endregion
@@ -180,6 +235,7 @@ namespace KpProjects.WpfClient.ViewModels
         {
             viewModel.GetViewModel = CreateViewModel;
             viewModel.SwitchTo = ShowViewModel;
+            viewModel.ShowErrorMessage = ShowError;
 
             CurrentViewModel = viewModel;
             CurrentViewModel.RaiseLoading();
@@ -192,6 +248,19 @@ namespace KpProjects.WpfClient.ViewModels
         private void OpenViewModel(string viewModelName)
         {
             ShowViewModel(CreateViewModel(viewModelName));
+        }
+
+        #endregion
+
+        #region ShowError
+
+        private void ShowError(string message)
+        {
+            if (!ClearErrorBw.IsBusy)
+            {
+                ErrorMessage = message;
+                ClearErrorBw.RunWorkerAsync();
+            }
         }
 
         #endregion

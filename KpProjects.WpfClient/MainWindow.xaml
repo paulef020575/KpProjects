@@ -108,10 +108,28 @@
             </TextBlock>
         </DockPanel>
 
+        <TextBlock Margin="5" DockPanel.Dock="Top"
+                   Text="{Binding ErrorMessage}"
+                   Foreground="Red"
+                   FontWeight="Bold"
+                   TextWrapping="Wrap">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasErrorMessage}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
         <ProgressBar Minimum="0" 
                      Maximum="100" 
                      IsIndeterminate="{Binding CurrentViewModel.IsLoading}"
-                     DockPanel.Dock="Top" />
+                     DockPanel.Dock="Top" 
+                     Visibility="{Binding CurrentViewModel.IsLoading, Converter={StaticResource BoolToVisibility}}" />
         
         <ContentPresenter Content="{Binding CurrentViewModel}" />
     </DockPanel>

@@ -14,6 +14,7 @@
                 <views:PersonView />
             </DataTemplate>
 
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ControlButtonStyle.xaml" />

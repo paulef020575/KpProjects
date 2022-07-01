@@ -46,7 +46,7 @@ namespace KpProjects.Data
         public KpProjectsContext(DbContextOptions<KpProjectsContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
             //Database.Migrate();
         }

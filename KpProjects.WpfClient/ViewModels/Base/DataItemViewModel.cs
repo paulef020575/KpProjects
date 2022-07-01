@@ -1,6 +1,7 @@
 ﻿using KpProjects.Classes;
 using KpProjects.Connector;
 using System;
+using System.Dynamic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -35,7 +36,10 @@ namespace KpProjects.WpfClient.ViewModels.Base
             DataItem = new TDataClass();
         }
 
-        public DataItemViewModel(IDataClient dataClient) : base(dataClient) { }
+        public DataItemViewModel(IDataClient dataClient) : base(dataClient) 
+        {
+            DataItem = new TDataClass();
+        }
 
         #endregion
 
@@ -59,7 +63,7 @@ namespace KpProjects.WpfClient.ViewModels.Base
         /// <param name="propertyName">имя свойства</param>
         protected virtual void SetValue(object value, [CallerMemberName] string propertyName = null)
         {
-            PropertyInfo propertyInfo = typeof(TDataClass).GetProperty(propertyName, BindingFlags.Public);
+            PropertyInfo propertyInfo = typeof(TDataClass).GetProperty(propertyName);
 
             if (propertyInfo != null)
             {
@@ -91,7 +95,26 @@ namespace KpProjects.WpfClient.ViewModels.Base
 
         #endregion
 
+        #region GetValue
+
+        protected T GetValue<T>([CallerMemberName]string propertyName = null)
+        {
+            PropertyInfo property = typeof(TDataClass).GetProperty(propertyName, typeof(T));
+
+            if (property == null || !property.CanRead)
+            {
+                throw new ArgumentException($"Property {propertyName} not found");
+            }
+
+            T value = (T)property.GetValue(DataItem, null);
+
+            return value;
+        }
+
+
+
         #endregion
 
+        #endregion
     }
 }

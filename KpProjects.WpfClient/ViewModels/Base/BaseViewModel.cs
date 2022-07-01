@@ -1,5 +1,6 @@
 ﻿using KpProjects.Connector;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -108,6 +109,14 @@ namespace KpProjects.WpfClient.ViewModels.Base
         public delegate void ShowVm(BaseViewModel viewModel);
 
         public ShowVm SwitchTo;
+
+        #endregion
+
+        #region ShowError delegate
+
+        public delegate void ShowErrorMes(string message);
+
+        public ShowErrorMes ShowErrorMessage;
 
         #endregion
     }
