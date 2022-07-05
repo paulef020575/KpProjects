@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KpProjects.WpfClient.ViewModels;
+using KpProjects.WpfClient.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,16 +20,17 @@ namespace KpProjects.WpfClient
             //Disable shutdown when the dialog closes
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            //var dialog = new LoginWindow();
+            LoginWindow dialog = new LoginWindow();
 
-            //if (dialog.ShowDialog() == true)
-            //{
-            //    var mainWindow = new MainWindow(dialog.Data);
-            //    //Re-enable normal shutdown mode.
-            //    Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            //    Current.MainWindow = mainWindow;
-            //    mainWindow.Show();
-            //}
+            if (dialog.ShowDialog() == true)
+            {
+                var mainWindow = new MainWindow();
+                mainWindow.DataContext = new MainWindowViewModel();
+                //Re-enable normal shutdown mode.
+                Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+                Current.MainWindow = mainWindow;
+                mainWindow.Show();
+            }
             //else
             //{
             //    MessageBox.Show("Unable to load data.", "Error", MessageBoxButton.OK);

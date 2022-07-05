@@ -60,8 +60,40 @@ namespace KpProjects.WpfClient.ViewModels
         protected override async Task LoadingData()
         {
             Login = Environment.UserName;
-
-
         }
+
+        #region Methods
+
+        #region CloseApp
+
+        private void CloseApp()
+        {
+            App.Current.Shutdown();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Commands
+
+        #region CloseAppCommand
+
+        private RelayCommand _closeAppCommand;
+
+        public RelayCommand CloseAppCommand
+        {
+            get
+            {
+                if (_closeAppCommand == null)
+                {
+                    _closeAppCommand = new RelayCommand("Закрыть", x => CloseApp());
+                }
+
+                return _closeAppCommand;
+            }
+        }
+        #endregion
+        #endregion
     }
 }

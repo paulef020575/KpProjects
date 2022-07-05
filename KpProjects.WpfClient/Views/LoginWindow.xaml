@@ -9,22 +9,25 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
-        Title="{Binding Title}" Height="450" Width="300">
+        Title="{Binding Title}" Height="450" Width="300"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodels:LoginViewModel />
     </Window.DataContext>
     <Border Background="LightGreen" CornerRadius="10">
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource CloseButtonStyle}" Margin="5">
+                <Button Style="{StaticResource CloseButtonStyle}" Margin="5"
+                        Command="{Binding CloseAppCommand}">
                     <iconPacks:PackIconMaterial Kind="Close" />
                 </Button>
             </StackPanel>
             <Image DockPanel.Dock="Top" Source="/Resources/startLogo.png" Width="200"/>
             <TextBox Text="{Binding Domain}" DockPanel.Dock="Top" Margin="50 50 50 5" />
             <TextBox Text="{Binding Login}" DockPanel.Dock="Top" Margin="50 5 50 5" />
-            <PasswordBox Password="{Binding Password}" DockPanel.Dock="Top" Margin="50 5 50 5" />
-            <Button HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="50 5 50 50" Padding="10">Login</Button>
+            <PasswordBox x:Name="PassBox" DockPanel.Dock="Top" Margin="50 5 50 5" />
+            <Button HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="50 5 50 50" Padding="10"
+                    CommandParameter="{Binding ElementName=PassBox, Path=SecurePassword}">Login</Button>
 
         </DockPanel>
     </Border>

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <None Remove="Resources\startLogo.png" />
-    <None Remove="Views\startLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +30,6 @@
     <Resource Include="Resources\logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Views\startLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
