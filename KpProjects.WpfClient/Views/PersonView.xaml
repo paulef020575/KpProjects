@@ -9,6 +9,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
 
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -29,5 +36,22 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Фамилия" Margin="5" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
 
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Имя" Margin="5" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Отчество" Margin="5" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Secondname, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата рождения" Margin="5" />
+        <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Birthday}" SelectedDateFormat="Short" Margin="5" Width="150" HorizontalAlignment="Left" />
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="ID в домене" Margin="5" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding AdGuid}" Margin="5" />
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Домен" Margin="5" />
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Domain}" Margin="5" />
+
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Доменное имя" Margin="5" />
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding DomainName}" Margin="5" />
     </Grid>
 </UserControl>

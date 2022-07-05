@@ -39,6 +39,76 @@ namespace KpProjects.WpfClient.ViewModels
 
         #endregion
 
+        #region Firstname
+
+        public string Firstname
+        {
+            get => GetValue<string>();
+            set
+            {
+                SetValue(value);
+                RaisePropertyChanged(nameof(Title));
+            }
+        }
+
+        #endregion
+
+        #region Secondname
+
+        public string Secondname
+        {
+            get => GetValue<string>();
+            set
+            {
+                SetValue(value);
+                RaisePropertyChanged(nameof(Title));
+            }
+
+        }
+
+
+        #endregion
+
+        #region Birthday
+
+        public DateTime Birthday
+        {
+            get => GetValue<DateTime>();
+            set => SetValue(value);
+        }
+
+        #endregion
+
+        #region AdGuid
+
+        public Guid AdGuid
+        {
+            get => GetValue<Guid>();
+            set => SetValue(value);
+        }
+
+        #endregion
+
+        #region Domain
+
+        public string Domain
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        #endregion
+
+        #region DomainName
+
+        public string DomainName
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        #endregion
+
         #endregion
 
         #region ctor's
@@ -71,7 +141,22 @@ namespace KpProjects.WpfClient.ViewModels
                     return;
                 }
 
-                Lastname = adUser.Surname;
+                string[] userNames = adUser.Name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (userNames.Length > 0)
+                {
+                    Lastname = userNames[0];
+                    if (userNames.Length > 1)
+                    {
+                        Firstname = userNames[1];
+                        if (userNames.Length > 2)
+                            Secondname = userNames[2];
+                    }
+                }
+
+                AdGuid = adUser.Guid.Value;
+
+                PrincipalContext context = new PrincipalContext(ContextType.Domain, "karjalapulp.local");
+                bool result = context.ValidateCredentials("efremovpv", "pauk522017");
             }
         }
 
