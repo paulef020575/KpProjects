@@ -6,30 +6,81 @@
         xmlns:local="clr-namespace:KpProjects.WpfClient.Views" 
         xmlns:viewmodels="clr-namespace:KpProjects.WpfClient.ViewModels" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        ResizeMode="NoResize"
+        WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" Foreground="Transparent"        
         Title="{Binding Title}" Height="450" Width="300"
         WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodels:LoginViewModel />
     </Window.DataContext>
-    <Border Background="LightGreen" CornerRadius="10">
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource CloseButtonStyle}" Margin="5"
-                        Command="{Binding CloseAppCommand}">
-                    <iconPacks:PackIconMaterial Kind="Close" />
-                </Button>
-            </StackPanel>
-            <Image DockPanel.Dock="Top" Source="/Resources/startLogo.png" Width="200"/>
-            <TextBox Text="{Binding Domain}" DockPanel.Dock="Top" Margin="50 50 50 5" />
-            <TextBox Text="{Binding Login}" DockPanel.Dock="Top" Margin="50 5 50 5" />
-            <PasswordBox x:Name="PassBox" DockPanel.Dock="Top" Margin="50 5 50 5" />
-            <Button HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="50 5 50 50" Padding="10"
-                    CommandParameter="{Binding ElementName=PassBox, Path=SecurePassword}">Login</Button>
 
-        </DockPanel>
-    </Border>
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border Grid.RowSpan="2" CornerRadius="20">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="LightGreen" Offset="0.5"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+
+        </Border>
+
+        <Image Source="/Resources/startLogo.png" Grid.Row="0" Margin="50"/>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <iconPacks:PackIconMaterial Kind="Account" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Center"
+                                        Foreground="Green"
+                                            Margin="0,0,5,0"/>
+                <TextBox FontFamily="Helvetica" 
+                     FontWeight="Light"
+                     FontSize="20"
+                     Text="Username"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     Width="200"
+                     Height="25"
+                     Foreground="Green"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Opacity="0.5"/>
+            </StackPanel>
+            <Border Width="225" Height="2" Background="Green" Opacity="0.5" Margin="0, 0, 0, 10" />
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Center"
+                                        Foreground="Green"
+                                            Margin="0,0,5,0"/>
+                <PasswordBox FontFamily="Helvetica" 
+                     FontWeight="Light"
+                     FontSize="20"
+                     Password="Password"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     Width="200"
+                     Height="25"
+                     Foreground="Green"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Opacity="0.5"/>
+            </StackPanel>
+            <Border Width="225" Height="2" Background="Green" Opacity="0.5"  Margin="0, 0, 0, 10" />
+
+            <Button HorizontalAlignment="Center" Margin="10" Style="{StaticResource LoginButtonStyle}">
+                Connect</Button>
+        </StackPanel>   
+    </Grid>
+
+
     
 </Window>

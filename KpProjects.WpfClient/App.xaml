@@ -19,6 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ControlButtonStyle.xaml" />
                 <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />
+                <ResourceDictionary Source="Styles/LoginButtonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
